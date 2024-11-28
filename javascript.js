@@ -1,32 +1,38 @@
 const containerLength = 650;
 const container = document.querySelector("#container");
+
 container.style.height = `${containerLength}px`;
 container.style.width = `${containerLength}px`;
 container.style.marginTop = "20px";
 
 generateGrid(16);
+initializeResetBtn();
 
-const resetBtn = document.querySelector("#reset-button");
-resetBtn.style.backgroundColor = "white";
-resetBtn.style.marginTop = "20px";
-resetBtn.style.padding = "3px 15px";
-resetBtn.style.borderRadius = "7px";
+function initializeResetBtn() {
+    const resetBtn = document.querySelector("#reset-button");
 
-resetBtn.addEventListener("mouseenter", () => {
-    resetBtn.style.backgroundColor = "grey";
-});
-
-resetBtn.addEventListener("mouseleave", () => {
+    resetBtn.textContent = "Select new grid size";
     resetBtn.style.backgroundColor = "white";
-});
+    resetBtn.style.marginTop = "20px";
+    resetBtn.style.padding = "3px 15px";
+    resetBtn.style.borderRadius = "7px";
 
-resetBtn.addEventListener("click", function(event) {
-    const userChoice = prompt("How many you want?");
-    if (userChoice && (+userChoice <= 100 && +userChoice > 0)) {
-        removeChildren(container);
-        generateGrid(+userChoice);
-    }
-});
+    resetBtn.addEventListener("mouseenter", () => {
+        resetBtn.style.backgroundColor = "grey";
+    });
+
+    resetBtn.addEventListener("mouseleave", () => {
+        resetBtn.style.backgroundColor = "white";
+    });
+
+    resetBtn.addEventListener("click", function(event) {
+        const userChoice = prompt("Select a grid size between 1 & 100");
+        if (userChoice && (+userChoice <= 100 && +userChoice > 0)) {
+            removeChildren(container);
+            generateGrid(+userChoice);
+        }
+    });
+}
 
 function generateGrid(squaresPerSide) {
     for (let i = 0; i < squaresPerSide * squaresPerSide; i++) {
