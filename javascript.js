@@ -36,8 +36,11 @@ function generateGrid(squaresPerSide) {
         square.style.border = "1px solid black";
         square.style.margin = 0;
         square.style.padding = 0;
+        square.style.opacity = "0.1";
         square.addEventListener("mouseover", function(event) {
-            square.style.backgroundColor = "grey";
+            const randomHexColor = getRandomHexColor();
+            square.style.backgroundColor = randomHexColor;
+            square.style.opacity = `${+square.style.opacity + 0.1}`;
         });
         container.appendChild(square);
     }
@@ -49,4 +52,14 @@ function removeChildren(elem) {
         elem.removeChild(child);
         child = elem.lastElementChild;
     }
+}
+
+function getRandomHexColor() {
+    let hexString = "#";
+    const hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"];
+    for (let i = 0; i < 6; i++) {
+        const randomHexValue = Math.floor(Math.random() * 16);
+        hexString += hexValues[randomHexValue];
+    }
+    return hexString;
 }
