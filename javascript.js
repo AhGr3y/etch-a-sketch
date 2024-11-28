@@ -1,9 +1,10 @@
-const containerLength = 650;
+const containerLength = 600;
 const container = document.querySelector("#container");
 
 container.style.height = `${containerLength}px`;
 container.style.width = `${containerLength}px`;
 container.style.marginTop = "20px";
+container.style.border = "1px solid black";
 
 generateGrid(16);
 initializeResetBtn();
@@ -37,10 +38,10 @@ function initializeResetBtn() {
 function generateGrid(squaresPerSide) {
     for (let i = 0; i < squaresPerSide * squaresPerSide; i++) {
         const square = document.createElement("div");
-
-        square.style.width = `${Math.floor(containerLength / squaresPerSide)}px`;
-        square.style.height = `${Math.floor(containerLength / squaresPerSide)}px`;
-        square.style.border = "1px solid black";
+        const squareLength = container.clientHeight / squaresPerSide;
+        
+        square.style.width = `${squareLength}px`;
+        square.style.height = `${squareLength}px`;
         square.style.margin = 0;
         square.style.padding = 0;
         square.style.opacity = "0.1";
